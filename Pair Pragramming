@@ -1,0 +1,138 @@
+#include<stdio.h>
+#include<conio.h>
+
+int main()
+{   int x;//Husband Salary
+    int y;//Wife Salary
+    int z;//Husband MPF
+    int c;//Wife MPF
+    int e;//Husband Tax
+    int f;//Wife 
+    
+    
+    printf("\n\n\n--------------Pair Programming Assignment--------------");
+    printf("\n\n       Husband's Month Salary:");
+    scanf("%d",&x);
+    printf("\n       Wife's Month Salary:");
+    scanf("%d",&y);
+    
+    if(x>7100&&x<30000)
+	{z=0.05*x;}
+	else if (x<7100)
+	{z=0;}
+	else {
+	z=1500;}
+	
+	if(y>7100&&y<30000)
+	{c=0.05*y;}
+	else if (y<7100)
+	{c=0;}
+	else {
+	c=1500;}
+	
+	int m =z*12;//Husband Year MPF
+	int n =c*12;//Wife Year MPF
+	int o=m+n;//Combined MPF
+	
+    printf("\n\n------------------------Result------------------------\n\n");
+    printf(" Husband's MPF mandatory contribution per month: %d ",z);
+    printf("\n\n Wife's MPF mandatory contribution per month: %d ",c);
+    printf("\n\n------------------------------------------------------");
+    
+    int a=x*12;//Husband Year Salary
+    int b=y*12;//Wife Year Salary
+    
+    int d=a-132000-m;//Husband Chargeable Income
+    int g=b-132000-n;//Wife Chargeable Income
+    
+    int s=a-m;
+	int t=b-n; 
+    
+    if(a>=2022000){
+	e=0.15*s;}
+	else
+	{if(d>0&&d<=50000)
+    {e=d*0.02;}
+    else if(d>50000&&d<=100000)
+    {e=1000+0.06*(d-50000);}
+    else if(d>100000&&d<=150000)
+    {e=1000+3000+0.1*(d-100000);}
+    else if(d>150000&&d<=200000)
+    {e=1000+3000+5000+0.14*(d-150000);}
+    else if(d>200000)
+	{e=1000+3000+5000+7000+0.17*(d-200000);}
+	else{e=0;}}
+
+    if(b>=2022000){
+	f=0.15*t;}
+	else{
+    if(g>0&&g<=50000)
+    {f=g*0.02;}
+    else if(g>50000&&g<=100000)
+    {f=1000+0.06*(g-50000);}
+    else if(g>100000&&g<=150000)
+    {f=1000+3000+0.1*(g-100000);}
+    else if(g>150000&&g<=200000)
+    {f=1000+3000+5000+0.14*(g-150000);}
+    else if(g>200000)
+	{f=1000+3000+5000+7000+0.17*(g-200000);}} 
+	
+	int i=0.75*e;//Husband Reduction
+    int j=0.75*f;//Wife Reduction
+    
+    if(i>20000)
+    {i=20000;}
+    
+    if(j>20000)
+    {j=20000;}
+    
+    printf("\n\n Husband Reduction: %d",i);
+    printf("\n\n Wife Reduction: %d",j);
+    printf("\n\n------------------------------------------------------");
+    
+    printf("\n\n Husband's Salary Tax if separate assessment assumed: %d",e-i);
+    printf("\n\n Wife's Salary Tax if separate assessment assumed: %d",f-j);
+    printf("\n\n Total if separate assessment: %d",e+f-i-j);
+    printf("\n\n------------------------------------------------------");
+    
+    int h=a+b-264000-o;//Combined Chargeable Income
+    int w=a+b-o;
+    int k;//Combined Tax
+    
+    if(h>=3144000){
+	k=0.15*w;}
+	else
+	{if(h>0&&h<=50000)
+    {k=h*0.02;}
+    else if(h>50000&&h<=100000)
+    {k=1000+0.06*(h-50000);}
+    else if(h>100000&&h<=150000)
+    {k=1000+3000+0.1*(h-100000);}
+    else if(h>150000&&h<=200000)
+    {k=1000+3000+5000+0.14*(h-150000);}
+    else if(h>200000)
+	{k=1000+3000+5000+7000+0.17*(h-200000);}
+	else{k=0;}}
+	
+	int l=0.75*k;//Combined Reduction
+	
+	if(l>20000)
+	{l=20000;}
+	
+    printf("\n\n Total Reduction: %d",l);	
+    printf("\n\n Total Salary Tax if joint assessment assumed: %d",k-l);
+    
+    printf("\n\n------------------------------------------------------");
+    
+    if((e+f-i-j)>(k-l))
+    {printf("\n\n Recommendation: Joint Assessment is better!");}
+    else if((e+f-i-j)<(k-l))
+    {printf("\n\n Recommendation: Separate Assessment is better!");}
+    else
+	{printf("\n\n Recommendation: Both are the Same!");}
+
+    getch();
+    
+    return 0;
+
+}
